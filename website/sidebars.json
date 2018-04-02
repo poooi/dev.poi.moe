@@ -1,10 +1,25 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
+    "Develop a plugin": [
+      "plugin-introduction",
+      "plugin-life-cycle",
+      "plugin-meta-field",
+      "plugin-exports"
+    ],
+    "API": [
+      "api-introduction",
+      "api-redux",
+      "api-poi-utils",
+      "api-events"
+    ],
+    "Guides": [
+      "guide-debugging",
+      "guide-publishing",
+      "guide-tips",
+      "guide-coding-style"
+    ]
   },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
+  "CLI": {
+    "CLI": ["cli"]
   }
 }

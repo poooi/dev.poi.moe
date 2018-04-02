@@ -22,8 +22,8 @@ const siteConfig = {
   baseUrl: '/' /* base url for your project */,
   projectName: 'poi',
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
-    {doc: 'doc4', label: 'API'},
+    {doc: 'plugin-introduction', label: 'Develop a plugin'},
+    {doc: 'cli', label: 'CLI'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
   ],
@@ -53,8 +53,8 @@ const siteConfig = {
     'Copyright © ' +
     new Date().getFullYear() +
     ' Poi contributors',
-  // organizationName: 'deltice', // or set an env variable ORGANIZATION_NAME
-  // projectName: 'test-site', // or set an env variable PROJECT_NAME
+  organizationName: 'poi', // or set an env variable ORGANIZATION_NAME
+  projectName: 'dev.poi.io', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
     theme: 'default',
