@@ -7,7 +7,7 @@
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version",
-    "deploy": "gh-pages build/dev.poi.io"
+    "deploy": "gh-pages -d build/dev.poi.io"
   },
   "devDependencies": {
     "docusaurus": "^1.0.9",
