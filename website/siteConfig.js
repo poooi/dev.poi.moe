@@ -19,7 +19,7 @@ const siteConfig = {
   title: 'dev.poi.io' /* title for your website */,
   tagline: 'Documents for poi development',
   url: 'https://dev.poi.io' /* your website url */,
-  baseUrl: '/' /* base url for your project */,
+  baseUrl: '/dev.poi.io/' /* base url for your project */,
   projectName: 'poi',
   headerLinks: [
     {doc: 'plugin-introduction', label: 'Develop a plugin'},
