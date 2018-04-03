@@ -22,7 +22,7 @@ const siteConfig = {
   baseUrl: '/dev.poi.io/' /* base url for your project */,
   projectName: 'poi',
   headerLinks: [
-    {doc: 'plugin-introduction', label: 'Develop a plugin'},
+    {doc: 'plugin-introduction', label: 'Docs'},
     {doc: 'cli', label: 'CLI'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},

@@ -29,10 +29,11 @@
     "Life cycle": "Life cycle",
     "plugin-meta-field": "Meta field in package.json",
     "Meta field": "Meta field",
-    "Develop a plugin": "Develop a plugin",
+    "Docs": "Docs",
     "CLI": "CLI",
     "Help": "Help",
     "Blog": "Blog",
+    "Essentials": "Essentials",
     "API": "API",
     "Guides": "Guides"
   },
