@@ -9,7 +9,7 @@
 const users = [
   {
     caption: 'User1',
-    image: '/test-site/img/docusaurus.svg',
+    image: '/test-site/img/poi.png',
     infoLink: 'https://www.facebook.com',
     pinned: true,
   },
@@ -29,9 +29,9 @@ const siteConfig = {
   ],
   users,
   /* path to images for header/footer */
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
-  favicon: 'img/favicon.png',
+  headerIcon: 'img/poi.png',
+  footerIcon: 'img/poi.png',
+  favicon: 'img/poi.png',
   /* colors for website */
   colors: {
     primaryColor: '#3a8fb7',

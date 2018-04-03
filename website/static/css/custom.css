@@ -63,6 +63,10 @@ code.hljs {
   border-bottom: 1px solid rgba(58, 143, 183, 0.8);
 }
 
+.fixedHeaderContainer header img {
+  height: 50px;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
