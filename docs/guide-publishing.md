@@ -8,7 +8,7 @@ sidebar_label: Publishing
 
 Publishing on npm facilitates versioning, and poi will use reloaded npm module to update plugin to new version.
 
-For more info, you can read npm's docs:  [package.json](https://docs.npmjs.com/files/package.json) and [npm publish](https://docs.npmjs.com/cli/publish).
+For more info, you can read npm's docs: [package.json](https://docs.npmjs.com/files/package.json) and [npm publish](https://docs.npmjs.com/cli/publish).
 
 Package name should begin with `poi-plugin-` to make it detected by poi.
 
