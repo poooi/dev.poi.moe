@@ -6,15 +6,16 @@ sidebar_label: Utilities
 
 ## Global constants
 
-| Name | Type | Description |
-|---|:---:|----|
-|ROOT| `string`| poi's root path, namely path where package.json and index.html reside |
-|APPDATA_PATH | `string` | path to store user data <br/> `%AppData%/poi` (Windows), <br/> `~/.config/poi` (Linux), <br/> `~/Library/Application Support/poi` (macOS) |
-| POI_VERSION | `string` | poi version |
+| Name         |   Type   | Description                                                                                                                               |
+| ------------ | :------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| ROOT         | `string` | poi's root path, namely path where package.json and index.html reside                                                                     |
+| APPDATA_PATH | `string` | path to store user data <br/> `%AppData%/poi` (Windows), <br/> `~/.config/poi` (Linux), <br/> `~/Library/Application Support/poi` (macOS) |
+| POI_VERSION  | `string` | poi version                                                                                                                               |
 
 Although we have some globals such as `ships`, `$ships`, `slotitems` and `$slotitems` to ease devtool interactive debugging. It is not recommended to use them in the plugin because they cannot be reactive to changes. You're supposed to get these data via `Redux`.
 
 > Note: some globals are actually `Proxy`, directly using them may cause hidden problems. for example:
+>
 > ```javascript
 > const { ships } = window // ships will not get updated! It remains the same data as when it is declared
 > ```
@@ -35,6 +36,7 @@ window.warn('Something') // display on the information bar below game window
 window.error('Something') // display on the information bar below game window
 window.success('Something') // display on the information bar below game window
 ```
+
 ### Desktop
 
 To use desktop noftication, check `views/env-parts/notif-center.es#L42` for more detail:
@@ -87,6 +89,7 @@ If you want to use config within React component, instead of `config.get`, the b
 Inter-Plugin Call is created to enable communications among plugins. Apart from IPC, You can also share data via `Redux`.
 
 ### Registering plugin's API:
+
 You should use a unique string, say, plugin name as IPC scope to avoid conflicts.
 
 ```javascript
@@ -113,6 +116,7 @@ ipc.unregisterAll('scope');
 ```
 
 ### Calling other plugin's API:
+
 NOTICE: All calls are asynchronous. A return value could not be expected.
 
 ```javascript
@@ -145,7 +149,8 @@ const fiexdT = i18next.getFixedT('en-US', 'main')
 
 fixedT('poi poi poi')
 ```
- `react-i18next` is preferable used within your React components.
+
+`react-i18next` is preferable used within your React components.
 
 ```javascript
 import React, { Component } from 'react'
@@ -156,9 +161,7 @@ class PoiContent extends Component {
   render() {
     const { t } = this.props
 
-    return (
-      <div>{t('poi is awesome')}</div>
-    )
+    return <div>{t('poi is awesome')}</div>
   }
 }
 ```

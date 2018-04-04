@@ -23,20 +23,20 @@ Extra information is stored in `poiPlugin` field, including:
 * `icon`: _String_, icon for plugin in plugin list, supports icons names `FontAwesome` version 4
 * `i18nDir`: _String_, custom i18n path relative to plugin root, defaults to `./i18n` and `./assets/i18n`.
 * `apiVer`, _Object_, defines plugin compatibility. Use it if a newer version is not compatible on older poi versions. Poi will check the field for installed plugin to determine its loading, and also check the field in latest version on npm repository, to control the update check, installation, upgrade or rolling back. Its format will be:
+  ```json
+  {
+    <poiVer>: <pluginVer>,
+  }
+  ```
+  which means: plugins versioned above `pluginVer` requires poi version above `poiVer`; if poi version is under `poiVer`, will rollback to `pluginVer`.
+  * For example, if a plugin's version `1.2.0` is only compatible to poi version `9.2.0` and above, and the latest version available to poi version below `9.2.0` is `1.1.12`, then the entry will be:
     ```json
     {
-      <poiVer>: <pluginVer>,
+      "9.2.0": "1.1.12"
     }
     ```
-    which means: plugins versioned above `pluginVer` requires poi version above `poiVer`; if poi version is under `poiVer`, will rollback to `pluginVer`.
-    * For example, if a plugin's version `1.2.0` is only compatible to poi version `9.2.0` and above, and the latest version available to poi version below `9.2.0` is `1.1.12`, then the entry will be:
-        ```json
-        {
-          "9.2.0": "1.1.12"
-        }
-        ```
-    * Attention, `pluginVer` should exactly exist in npm repository since the rolling back will use the exact version, while `poiVer` is not limited, e.g. you can use `6.99.99` to cover poi versions under 7.0.0
-    * poi will check update information in npm registry and rollback to the most latest stable version if possible.
+  * Attention, `pluginVer` should exactly exist in npm repository since the rolling back will use the exact version, while `poiVer` is not limited, e.g. you can use `6.99.99` to cover poi versions under 7.0.0
+  * poi will check update information in npm registry and rollback to the most latest stable version if possible.
 
 An example `package.json`:
 

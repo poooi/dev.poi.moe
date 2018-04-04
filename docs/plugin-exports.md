@@ -76,15 +76,17 @@ export const reactClass = connect(
   {
     increaseClick,
   },
-)(class PluginClickButton extends Component {
-  render() {
-    const { count, increaseClick } = this.props
-    return (
-      <div>
-        <h1>Clicked: {count}</h1>
-        <Button onClick={increaseClick}>Click here!</Button>
-      </div>
-    )
-  }
-})
+)(
+  class PluginClickButton extends Component {
+    render() {
+      const { count, increaseClick } = this.props
+      return (
+        <div>
+          <h1>Clicked: {count}</h1>
+          <Button onClick={increaseClick}>Click here!</Button>
+        </div>
+      )
+    }
+  },
+)
 ```

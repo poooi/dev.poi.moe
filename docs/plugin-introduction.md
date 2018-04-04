@@ -32,6 +32,7 @@ Plugin will interact with poi using:
 * exported variables
 
 A typical folder structure of poi plugin could be:
+
 ```
 poi-plugin-foo-bar
 ├── assets
