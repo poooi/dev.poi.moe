@@ -4,50 +4,27 @@ title: Exported variables
 sidebar_label: Exports
 ---
 
-Exported variables can de defined in the entry file of a [Node module](https://nodejs.org/api/modules.html), which is the primary way for a module to expose inner functionality and information. If you use [ECMAScript 7's exports statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export), the code will be,
+Exported variables can de defined in the entry file of a [Node module](https://nodejs.org/api/modules.html), which is the primary way for a module to expose inner functionality and information. If you use [ECMAScript 7's exports statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export), the code will be:
 
 ```javascript
 import { join } from 'path'
-export const windowURL = join(__dirname, 'index.html')
+export reducer from './reducer' // export from syntax is supported
+export const windowURL = join(__dirname, 'index.html') // __dirname is the root path of your plugin.
 ```
 
-If you use CoffeeScript, it will be:
+By reading the exported variables, poi could load the plugin and make it work.
 
-```coffeescript
-{join} = require 'path'
-module.exports.windowURL = join __dirname, 'index.html'
-```
+A plugin could be totally backend without any UI, and if user interaction is required, the plugin could export a `React Component` to be rendered within poi's main window or external window. poi will try to import Following variables:
 
-Above `_dirname` variable is the root path of your plugin.
-
-poi demands that plugin inform main program with information using exporting.
-
-Panel plugin is essentially a component rendered within main poi. Following variables for panel and backend plugin are:
-
-* `reactClass`: _React Component_, rendered in main poi as a plugin panel.
+* `reactClass`: _React Component_, rendered in poi's main window or new window.
 * `reducer`: [_Redux reducer_](http://redux.js.org/docs/basics/Reducers.html), as Redux requires a unique global store, if plugin shall maintain the store, a reducer must be provided and main poi will combine it with its own reducers.
   * plugin store will be placed at `store.ext.<pluginPackageName>`, e.g. `store.ext['poi-plugin-prophet']`. It is recommended to use `extensionSelectorFactory('poi-plugin-prophet')` to retrieve data, as to improve readability.
   * plugin store will be emptied upon being disabled
-
-New window plugin is exactly a new web page window running on another process. Following variables are for new window plugin:
-
-* `windowURL`: _String_, path for new window plugin's index page.
-* `reactClass` property will be ignored if provided `windowURL`
-* `realClose`: _Boolean_, whether the window is closed on exiting. If set to `true`, "closing the plugin" will just hide the window with plugin running at backend; otherwise closing means empty the process memory. default is `false`
-* `multiWindow`: _Boolean_, whether multiple windows are allowed. If set to `true`, every time clicking the plugin name will open a new window, and `realClose` will be fixed to `true`, otherwise clicking the plugin name will switch to the existing window.
-* `windowOptions`: _Object_, used in window initialization. You are free to use options listed in [Electron BrowserWindow](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#class-browserwindow) except for some that are overwritten by poi. Generally you need the following:
-* `x`: _Number_, x coordinate for window
-* `y`: _Number_, y coordinate for window
-* `width`: _Number_, window width
-* `height`: _Number_, window height
-
-And following variables apply to all sorts of plugins:
-
 * `settingClass`: _React Component_, setting panel for plugin, will be rendered in plugin list, settings view
 * `pluginDidLoad`: _function_, no argument, called after plugin is enabled
 * `pluginWillUnload`: _function_, no argument, called before plugin is disabled
 
-Here's an example using custom reducer. It records and shows the count for clicking a button. Though React state is capable for this task, the code uses Redux for showcasing `export reducer` usage. [JSX language](https://facebook.github.io/react/docs/jsx-in-depth.html) is used.
+Here's an example plugin entry file with a custom reducer. It records and shows the count for clicking a button. Though React state is capable for this task, the code uses Redux for showcasing `export reducer` usage. [JSX syntax](https://facebook.github.io/react/docs/jsx-in-depth.html) is used.
 
 ```javascript
 import React, { Component } from 'react'
@@ -55,7 +32,7 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import { Button } from 'react-bootstrap'
 
-// Import selectors defined in poi
+// Import selectors defined in poi, the path resolution is handled by poi
 import { extensionSelectorFactory } from 'views/utils/selectors'
 
 const EXTENSION_KEY = 'poi-plugin-click-button'
@@ -72,7 +49,7 @@ const clickCountSelector = createSelector(
 )
 
 // poi will insert this reducer into the root reducer of the app
-export function reducer(state = { count: 0 }, action) {
+export const reducer = (state = { count: 0 }, action) => {
   const { type } = action
   if (type === '@@poi-plugin-click-button@click')
     return {
@@ -84,11 +61,9 @@ export function reducer(state = { count: 0 }, action) {
 }
 
 // Action
-function increaseClick() {
-  return {
-    type: '@@poi-plugin-click-button@click',
-  }
-}
+const increaseClick = () => ({
+  type: '@@poi-plugin-click-button@click',
+})
 
 // poi will render this component in the plugin panel
 export const reactClass = connect(
@@ -98,17 +73,15 @@ export const reactClass = connect(
   {
     increaseClick,
   },
-)(
-  class PluginClickButton extends Component {
-    render() {
-      const { count, increaseClick } = this.props
-      return (
-        <div>
-          <h1>Clicked: {count}</h1>
-          <Button onClick={increaseClick}>Click here!</Button>
-        </div>
-      )
-    }
-  },
-)
+)(class PluginClickButton extends Component {
+  render() {
+    const { count, increaseClick } = this.props
+    return (
+      <div>
+        <h1>Clicked: {count}</h1>
+        <Button onClick={increaseClick}>Click here!</Button>
+      </div>
+    )
+  }
+})
 ```
