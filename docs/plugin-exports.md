@@ -14,15 +14,18 @@ export const windowURL = join(__dirname, 'index.html') // __dirname is the root 
 
 By reading the exported variables, poi could load the plugin and make it work.
 
-A plugin could be totally backend without any UI, and if user interaction is required, the plugin could export a `React Component` to be rendered within poi's main window or external window. poi will try to import Following variables:
+A plugin could be totally backend without any UI, and if user interaction is required, the plugin could export a `React.ComponentType` to be rendered within poi's main window or external window. poi will try to import Following variables:
 
-* `reactClass`: _React Component_, rendered in poi's main window or new window.
+> Note: `React.ComponentType` is a valid component, namely `React.Component`, `React.PureComponent` or `React.StatelessComponent`
+
+* `reactClass`: _React.ComponentType_, rendered in poi's main window or new window.
 * `reducer`: [_Redux reducer_](http://redux.js.org/docs/basics/Reducers.html), as Redux requires a unique global store, if plugin shall maintain the store, a reducer must be provided and main poi will combine it with its own reducers.
   * plugin store will be placed at `store.ext.<pluginPackageName>`, e.g. `store.ext['poi-plugin-prophet']`. It is recommended to use `extensionSelectorFactory('poi-plugin-prophet')` to retrieve data, as to improve readability.
   * plugin store will be emptied upon being disabled
-* `settingClass`: _React Component_, setting panel for plugin, will be rendered in plugin list, settings view
-* `pluginDidLoad`: _function_, no argument, called after plugin is enabled
-* `pluginWillUnload`: _function_, no argument, called before plugin is disabled
+* `settingClass`: _React.ComponentType_, setting panel for plugin, will be rendered in plugin list, settings view
+* `pluginDidLoad`: _function(): void_, no argument, called after plugin is enabled
+* `pluginWillUnload`: _function(): void_, no argument, called before plugin is disabled
+* `switchPluginPath`: _Array_, game response URI list for poi to switch to the plugin if the exact game response got, each element could be a single `string` or an object of shape `{ path: string, valid: function(): boolean }`, the `valid` function will be called when the path matches and returns whether poi could switch to the plugin.
 
 Here's an example plugin entry file with a custom reducer. It records and shows the count for clicking a button. Though React state is capable for this task, the code uses Redux for showcasing `export reducer` usage. [JSX syntax](https://facebook.github.io/react/docs/jsx-in-depth.html) is used.
 
