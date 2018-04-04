@@ -4,17 +4,28 @@ title: Utilities in poi
 sidebar_label: Utilities
 ---
 
-## Globals
+## Global constants
 
-```javascript
-window = ROOT // poi's root path, namely path where package.json and index.html reside
-APPDATA_PATH // path to store user data, it will be %AppData%/poi on Windows, ~/.config/poi on Linux, ~/Library/Application Support/poi on macOS
-POI_VERSION // poi version
-```
+| Name | Type | Description |
+|---|:---:|----|
+|ROOT| `string`| poi's root path, namely path where package.json and index.html reside |
+|APPDATA_PATH | `string` | path to store user data <br/> `%AppData%/poi` (Windows), <br/> `~/.config/poi` (Linux), <br/> `~/Library/Application Support/poi` (macOS) |
+| POI_VERSION | `string` | poi version |
 
-some globals are reserved for compatibility, such as `_`, `ships`. It is not recommended to use them in the plugin. Use `import` or `store`'s `selector` instead.
+Although we have some globals such as `ships`, `$ships`, `slotitems` and `$slotitems` to ease devtool interactive debugging. It is not recommended to use them in the plugin because they cannot be reactive to changes. You're supposed to get these data via `Redux`.
+
+> Note: some globals are actually `Proxy`, directly using them may cause hidden problems. for example:
+> ```javascript
+> const { ships } = window // ships will not get updated! It remains the same data as when it is declared
+> ```
+
+There're also some global functions defined in `window`, they're for compatibility reason or for easing devtool debugging. They should be `import` to your code.
 
 ## Notifications
+
+Poi supports various notifications:
+
+### Info bar
 
 To display information in the info bar under game area:
 
@@ -24,6 +35,7 @@ window.warn('Something') // display on the information bar below game window
 window.error('Something') // display on the information bar below game window
 window.success('Something') // display on the information bar below game window
 ```
+### Desktop
 
 To use desktop noftication, check `views/env-parts/notif-center.es#L42` for more detail:
 
@@ -31,7 +43,7 @@ To use desktop noftication, check `views/env-parts/notif-center.es#L42` for more
 window.notify('Something') // desktop notification
 ```
 
-To use modal:
+### Modal
 
 ```javascript
 window.toggleModal('Title', 'Content') // display modal, Content can be HTML
@@ -46,6 +58,8 @@ var footer = [
 ]
 window.toggleModal('Title', 'Content', footer)
 ```
+
+### Toast
 
 To use toast, check `views/env-parts/toast.es#L2` for more detail:
 
@@ -64,149 +78,89 @@ window.layout // current layout = 'horizontal' || 'vertical'
 window.theme // current theme
 ```
 
-If you want to use config within React component, instead of `config.get`, the best practice is to use selectors (see `views/utils/selectors`) to retrieve from store.config, with `lodash`'s `get` method.
-
-## Theming
-
-You may use theme API from main poi to let your window plugin use the same theme.
-
-```javascript
-require(`${ROOT}/views/env-parts/theme`) // if you've loaded ROOT variable
-```
-
-The API will load stylesheets for `bootstrap`, `font-awesome`, and user defined `custom.css`, you may append following `<link>` tags into your `<head>`.
-
-```html
-<link rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" id="fontawesome-css">
-<link rel="stylesheet" id="custom-css">
-```
-
-The zooming factor in main poi is not inherit, so you have to deal with it yourself, for example, zooming the font size only to get rid of window size issues.
-
-```javascript
-const zoomLevel = config.get('poi.zoomLevel', 1)
-const additionalStyle = document.createElement('style')
-
-remote.getCurrentWindow().webContents.on('dom-ready', e => {
-  document.body.appendChild(additionalStyle)
-})
-
-additionalStyle.innerHTML = `
-  item-improvement {
-    font-size: ${zoomLevel * 100}%;
-  }
-`
-```
+If you want to use config within React component, instead of `config.get`, the best practice is to use selectors (see `views/utils/selectors`) to retrieve from store.config, with `lodash`'s `get` method or optional chaining operator.
 
 ## Inter-Plugin Call
 
-Import IPC module
+> Note: this is not electron's IPC(Inter-Process-Call)
+
+Inter-Plugin Call is created to enable communications among plugins. Apart from IPC, You can also share data via `Redux`.
+
+### Registering plugin's API:
+You should use a unique string, say, plugin name as IPC scope to avoid conflicts.
 
 ```javascript
-var ipc = window.ipc
-```
+const { ipc } = window
 
-Register plugin's API:
-You should use `pluginName` as `scope_name`.
-
-```javascript
 ipc.register("scope_name", {
   api_name:   @ref_to_function
   api_name2:  @ref_to_function_2
 });
 ```
 
-Unregister plugin's API:
+### Unregistering
 
 ```javascript
-ipc.unregister("scope_name", "api_name");
-ipc.unregister("scope_name", ["api_name", "api_name2"]);
-ipc.unregister("scope_name", {
-  api_name:   @whatever
-  api_name2:  @whatever
+const { ipc } = window
+
+ipc.unregister('scope', 'api_name');
+ipc.unregister('scope', ['api', 'api2']);
+ipc.unregister('scope', {
+  api:   @whatever
+  api2:  @whatever
 });
-ipc.unregisterAll("scope_name");
+ipc.unregisterAll('scope');
 ```
 
-Call other plugin's API:
-NOTICE: All calls are asynchronous. You mustn't expect a return value.
-
-```coffeescript
-scope = ipc.access("scope_name");
-scope?.api_name?(args);
-```
-
-Call an API of all plugins：
+### Calling other plugin's API:
+NOTICE: All calls are asynchronous. A return value could not be expected.
 
 ```javascript
-ipc.foreachCall("api_name", arg1, arg2, ...)
+scope = ipc.access('scope')
+scope?.api_name?(args) // you should check the existence before calling to avoid exceptions
+```
+
+A plugin's ipc existence is also in `Redux` store
+
+### Calling an API of all plugins：
+
+```javascript
+ipc.foreachCall('api', arg1, arg2, ...)
 ```
 
 ## i18n
 
-Poi supports i18n with `i18n-2` package.
+Poi supports i18n with `i18next` package.
 
-Place your translation files in the path indicated by `poiPlugin.i18nDir` of `package.json`, and the translation object `window.i18n[plugin id]` will be automatically created.
+Place your translation files in the path indicated by `poiPlugin.i18nDir` of `package.json`
 
-For panel plugin, use `translated = window.i18n[plugin id].__(toTranslate)` to get string translated.
-
-`poi-plugin-translator` provides English / Korean localization for ship and item names, etc.
-
-For i18n of game resources, poi predefines a translation method, for non-window plugin, it can be called as below:
+You can import the i18next object from `views/env-parts/i18next` and use it to start translation.
 
 ```javascript
-resource = window.i18n.resources.__('to translate')
-```
+import i18next from 'views/env-parts/i18next'
 
-For window plugin, you have to create yourself translation object.
+i18next.t('Yori Dori Midori Poi~')
+
+const fiexdT = i18next.getFixedT('en-US', 'main')
+
+fixedT('poi poi poi')
+```
+ `react-i18next` is preferable used within your React components.
 
 ```javascript
-window.language = config.get('poi.language', navigator.language)
-const i18n = new i18n2({
-  locales: ['en-US', 'ja-JP', 'zh-CN', 'zh-TW'],
-  defaultLocale: 'zh-CN',
-  directory: join(__dirname, 'i18n'),
-  extension: '.json',
-  updateFiles: false,
-  devMode: false,
-})
-i18n.setLocale(window.language)
+import React, { Component } from 'react'
+import { translate } from 'react-i18next'
 
-if (i18n.resources == null) {
-  i18n.resources = {}
+@translate()
+class PoiContent extends Component {
+  render() {
+    const { t } = this.props
+
+    return (
+      <div>{t('poi is awesome')}</div>
+    )
+  }
 }
-
-if (i18n.resources.__ == null) {
-  i18n.resources.__ = str => str
-}
-if (i18n.resources.translate == null) {
-  i18n.resources.translate = (locale, str) => str
-}
-if (i18n.resources.setLocale == null) {
-  i18n.resources.setLocale = str => {}
-}
-
-window.i18n = i18n
-
-try {
-  require('poi-plugin-translator').pluginDidLoad()
-} catch (error) {
-  console.warn('plugin-translator', error)
-}
-
-window.__ = i18n.__.bind(i18n)
-window.__r = i18n.resources.__.bind(i18n.resources)
-
-window.i18n = i18n
-
-resource = window.i18n.resources.__('to translate')
 ```
 
-It is recommended to translate the window title
-
-```javascript
-document.title = window.__('your-plugin')
-```
-
-Please refer to [i18n-2](https://github.com/jeresig/i18n-node-2) for more information on i18n-2 package.
+more usage could be found in [react-i18next's officail docs](https://react.i18next.com/).
