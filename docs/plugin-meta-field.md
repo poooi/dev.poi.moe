@@ -16,24 +16,27 @@ Standard metadata used are:
 
 Extra information is stored in `poiPlugin` field, including:
 
-* `title`: _String_, title for plugin, displayed in plugin list and menu. Will be translated provided in i18n keys.
-* `id`: _String_, key for identify the plugin. Will be package name if empty.
-* `priority`: _Number_, priority in plugin menu, smaller value will make it more ahead. Generally the order is panel plugin < window plugin < back end plugin, but it is not obliged.
-* `description`: _String_, description of the plugin, displayed in plugin list. Since standard metadata's `description` is displayed in npm website, this field is for poi specified description. Will be translated provided in i18n keys.
-* `icon`: _String_, icon for plugin in plugin list, supports icons including `FontAwesome`, see [react-icons](https://www.npmjs.com/package/react-icons)
-* `i18nDir`: _String_, custom [i18n](https://github.com/jeresig/i18n-node-2) path relative to plugin root, will be `./i18n` and `./assets/i18n` by default.
+* `title`: _String_, title for plugin, displayed in plugin list and menu. Will be translated if it exists in i18n resources.
+* `id`: _String_, key for identify the plugin. Will fallback to package name if empty.
+* `priority`: _Number_, priority in plugin menu, smaller value will move it forward. Generally the order is panel plugin < window plugin < back end plugin, but it is not obliged.
+* `description`: _String_, description of the plugin, displayed in plugin list. Since standard metadata's `description` is displayed in npm website, this field is for poi specified description. Will be translated if it exists in i18n resources.
+* `icon`: _String_, icon for plugin in plugin list, supports icons names `FontAwesome` version 4
+* `i18nDir`: _String_, custom i18n path relative to plugin root, defaults to `./i18n` and `./assets/i18n`.
 * `apiVer`, _Object_, defines plugin compatibility. Use it if a newer version is not compatible on older poi versions. Poi will check the field for installed plugin to determine its loading, and also check the field in latest version on npm repository, to control the update check, installation, upgrade or rolling back. Its format will be:
-
-```javascript
-{
-  <poiVer>: <pluginVer>,
-}
-```
-
-which means: plugins versioned above `pluginVer` requires poi version above `poiVer`; if poi version is under `poiVer`, will rollback to `pluginVer`.
-
-* Attention, `pluginVer` should exactly exist in npm repository since the rolling back will use the exact version, while `poiVer` is not limited, e.g. you can use `6.99.99` to cover poi versions under 7.0.0
-* poi will check update and rollback for the most latest stable version.
+  ```json
+  {
+    <poiVer>: <pluginVer>,
+  }
+  ```
+  which means: plugins versioned above `pluginVer` requires poi version above `poiVer`; if poi version is under `poiVer`, will rollback to `pluginVer`.
+  * For example, if a plugin's version `1.2.0` is only compatible to poi version `9.2.0` and above, and the latest version available to poi version below `9.2.0` is `1.1.12`, then the entry will be:
+    ```json
+    {
+      "9.2.0": "1.1.12"
+    }
+    ```
+  * Attention, `pluginVer` should exactly exist in npm repository since the rolling back will use the exact version, while `poiVer` is not limited, e.g. you can use `6.99.99` to cover poi versions under 7.0.0
+  * poi will check update information in npm registry and rollback to the most latest stable version if possible.
 
 An example `package.json`:
 
@@ -41,8 +44,8 @@ An example `package.json`:
 {
   "name": "poi-plugin-translator",
   "version": "0.2.4",
-  "main": "index.cjsx",
-  "description": "A plugin for poi that translates names."
+  "main": "index.js",
+  "description": "A plugin for poi that translates names.",
   "author": {
     "name": "KochiyaOcean",
     "url": "https://github.com/kochiyaocean"
