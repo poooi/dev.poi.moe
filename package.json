@@ -16,6 +16,8 @@
     "format": "prettier --write ./**/*.md"
   },
   "husky": {
-    "pre-commit": "lint-staged"
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
