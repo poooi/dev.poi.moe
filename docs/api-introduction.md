@@ -20,9 +20,7 @@ As poi appends its root path to importing paths, so you can import path relative
 ```javascript
 import { shipsSelector } from 'views/utils/selectors'
 
-// equivalent to
-import * as Selectors from 'views/utils/selectors'
-const { shipsSelector } = Selectors
+// which means:
+import { shipsSelector } from `${ROOT}/views/utils/selectors` //
+// ROOT is poi's root path, and literal template is not unsupported in `import` syntax
 ```
-
-> Note: due to some historical reasons, ECMAScript module like syntax (`import` and `export`) will be transpiled by `babel`, and the transpile behaviour or result could change in the future
