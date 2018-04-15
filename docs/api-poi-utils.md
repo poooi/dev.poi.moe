@@ -22,6 +22,25 @@ Although we have some globals such as `ships`, `$ships`, `slotitems` and `$sloti
 
 There're also some global functions defined in `window`, they're for compatibility reason or for easing devtool debugging. They should be `import` to your code.
 
+## Environment for window mode
+
+In window mode, the plugin component is mounted by window opened by `window.open` method using [portals](https://reactjs.org/docs/portals.html), so you can't access environment of new window directly by calling `window` object (It is `window` object of main window).
+
+The environment of new window can be accessed by [context](https://reactjs.org/docs/context.html).
+
+```javascript
+import React from 'react'
+import { WindowEnv } from 'views/components/etc/window-env'
+
+// window: window object of window that plugin belongs to.
+// mountpoint: container that mounts plugin and overlays(tooltip, modal, etc).
+export const reactClass = () => (
+  <WindowEnv.Consumer>
+    {({ window, mountPoint }) => <div>{window.document.title}</div>}
+  </WindowEnv.Consumer>
+)
+```
+
 ## Notifications
 
 Poi supports various notifications:
