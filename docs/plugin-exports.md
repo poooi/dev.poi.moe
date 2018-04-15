@@ -26,6 +26,7 @@ A plugin could be totally backend without any UI, and if user interaction is req
 * `pluginDidLoad`: _function(): void_, no argument, called after plugin is enabled
 * `pluginWillUnload`: _function(): void_, no argument, called before plugin is disabled
 * `switchPluginPath`: _Array_, game response URI list for poi to switch to the plugin if the exact game response got, each element could be a single `string` or an object of shape `{ path: string, valid: function(): boolean }`, the `valid` function will be called when the path matches and returns whether poi could switch to the plugin.
+* `windowMode`: _bool_, the plugin will be started as a new-window or not for default.
 
 Here's an example plugin entry file with a custom reducer. It records and shows the count for clicking a button. Though React state is capable for this task, the code uses Redux for showcasing `export reducer` usage. [JSX syntax](https://facebook.github.io/react/docs/jsx-in-depth.html) is used.
 
@@ -34,6 +35,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import { Button } from 'react-bootstrap'
+
+// If you are using combineReducers or reduceReducers, import poi's hacked function instead of redux's
+// Or the third parameter of reducer will be ignored
+import { combineReducers } from 'views/redux/combine-reducers'
+import reduceReducers from 'views/redux/reduce-reducers'
 
 // Import selectors defined in poi, the path resolution is handled by poi
 import { extensionSelectorFactory } from 'views/utils/selectors'
@@ -52,7 +58,8 @@ const clickCountSelector = createSelector(
 )
 
 // poi will insert this reducer into the root reducer of the app
-export const reducer = (state = { count: 0 }, action) => {
+// the third parameter is the whole store of redux
+export const reducer = (state = { count: 0 }, action, store) => {
   const { type } = action
   if (type === '@@poi-plugin-click-button@click')
     return {
