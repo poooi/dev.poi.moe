@@ -18,8 +18,9 @@ const users = [
 const siteConfig = {
   title: 'dev.poi.io' /* title for your website */,
   tagline: 'Documents for poi development',
-  url: 'https://dev.poi.io' /* your website url */,
-  baseUrl: '/dev.poi.io/' /* base url for your project */,
+  url: 'https://dev.poi.fyi' /* your website url */,
+  cname: 'dev.poi.fyi',
+  baseUrl: '/' /* base url for your project */,
   projectName: 'poi',
   headerLinks: [
     {doc: 'plugin-introduction', label: 'Docs'},
@@ -61,7 +62,7 @@ const siteConfig = {
   },
   scripts: ['https://buttons.github.io/buttons.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
-  repoUrl: 'https://github.com/kagamichan/dev.poi.io',
+  repoUrl: 'https://github.com/poooi/dev.poi.io',
   /* On page navigation for the current documentation page */
   // onPageNav: 'separate',
 };
