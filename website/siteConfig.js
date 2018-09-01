@@ -54,7 +54,7 @@ const siteConfig = {
     'Copyright © ' +
     new Date().getFullYear() +
     ' Poi contributors',
-  organizationName: 'poi', // or set an env variable ORGANIZATION_NAME
+  organizationName: 'poooi', // or set an env variable ORGANIZATION_NAME
   projectName: 'dev.poooi.app', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
