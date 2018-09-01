@@ -16,12 +16,12 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'dev.poi.io' /* title for your website */,
+  title: 'Poi dev documents' /* title for your website */,
   tagline: 'Documents for poi development',
-  url: 'https://dev.poi.fyi' /* your website url */,
-  cname: 'dev.poi.fyi',
+  url: 'https://dev.poooi.app' /* your website url */,
+  cname: 'dev.poooi.app',
   baseUrl: '/' /* base url for your project */,
-  projectName: 'poi',
+  projectName: 'dev.poi',
   headerLinks: [
     {doc: 'plugin-introduction', label: 'Docs'},
     {doc: 'cli', label: 'CLI'},
