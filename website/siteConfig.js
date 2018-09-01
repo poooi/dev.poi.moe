@@ -5,16 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/* List of projects/orgs using your project for the users page */
-const users = [
-  {
-    caption: 'User1',
-    image: '/test-site/img/poi.png',
-    infoLink: 'https://www.facebook.com',
-    pinned: true,
-  },
-];
-
 const siteConfig = {
   title: 'Poi dev documents' /* title for your website */,
   tagline: 'Documents for poi development',
@@ -28,7 +18,6 @@ const siteConfig = {
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
   ],
-  users,
   /* path to images for header/footer */
   headerIcon: 'img/poi.png',
   footerIcon: 'img/poi.png',
