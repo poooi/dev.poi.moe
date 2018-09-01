@@ -58,7 +58,8 @@ const siteConfig = {
   projectName: 'dev.poooi.app', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
-    theme: 'tomorrow',
+    theme: 'dracula',
+    defaultLang: 'javascript',
   },
   scripts: ['https://buttons.github.io/buttons.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
