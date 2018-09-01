@@ -1,96 +1,9 @@
 /* your custom css */
 
-.fixedHeaderContainer {
-  background: #1c1c1c;
-}
-
-.navigationSlider .slidingNav ul {
-  background: #1c1c1c;
-}
-
-.navigationSlider .slidingNav ul li.siteNavItemActive a,
-.navigationSlider .slidingNav ul li.siteNavGroupActive a {
-  background: none;
-}
-
-.navigationSlider .slidingNav ul li.siteNavItemActive a,
-.navigationSlider .slidingNav ul li.siteNavGroupActive a {
-  position: relative;
-  color: #3a8fb7;
-}
-
-.navigationSlider .slidingNav ul li.siteNavItemActive a::before,
-.navigationSlider .slidingNav ul li.siteNavGroupActive a::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 5px;
-  background-color: #3a8fb7;
-  bottom: -11px;
-  left: 0;
+body {
+  font-family: $myFont;
 }
 
 code {
-  background-color: rgba(247, 217, 76, 0.2);
-  box-shadow: 2px 0 rgba(247, 217, 76, 0.2), -2px 0 rgba(247, 217, 76, 0.2);
-}
-
-code.hljs {
-  font-size: 16px;
-  box-shadow: none;
-}
-
-.mainContainer .wrapper article a {
-  background-color: rgba(58, 143, 183, 0.1);
-  box-shadow: 2px 0 rgba(58, 143, 183, 0.1), -2px 0 rgba(58, 143, 183, 0.1);
-  border-bottom: 1px solid rgba(58, 143, 183, 0.4);
-}
-
-.mainContainer .wrapper article a.anchor {
-  border-bottom: 0px;
-}
-
-.mainContainer .wrapper article a code {
-  background: none;
-  box-shadow: none;
-}
-
-.mainContainer .wrapper article a:hover,
-.mainContainer .wrapper article a:focus {
-  text-decoration: none;
-  background-color: rgba(58, 143, 183, 0.3);
-  box-shadow: 2px 0 rgba(58, 143, 183, 0.3), -2px 0 rgba(58, 143, 183, 0.3);
-  border-bottom: 1px solid rgba(58, 143, 183, 0.8);
-}
-
-.fixedHeaderContainer header img {
-  height: 50px;
-}
-
-@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
-}
-
-@media only screen and (max-width: 736px) {
-  .navigationSlider .slidingNav ul li.siteNavItemActive a::before,
-  .navigationSlider .slidingNav ul li.siteNavGroupActive a::before {
-    bottom: 0;
-  }
-}
-
-@media only screen and (min-width: 736px) {
-  .navigationSlider .slidingNav ul li a:hover {
-    background: none;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-}
-
-@media only screen and (max-width: 1023px) {
-}
-
-@media only screen and (min-width: 1400px) {
-}
-
-@media only screen and (min-width: 1500px) {
+  font-family: 'IBM Plex Mono';
 }

@@ -35,27 +35,27 @@ const siteConfig = {
   favicon: 'img/poi.png',
   /* colors for website */
   colors: {
-    primaryColor: '#3a8fb7',
-    secondaryColor: '#52869e',
+    primaryColor: '#03a9f4',
+    secondaryColor: '#ff9800',
   },
   /* custom fonts for website */
-  /*fonts: {
+  fonts: {
     myFont: [
-      "Times New Roman",
-      "Serif"
+      'IBM Plex Sans',
+      'sans-serif'
     ],
     myOtherFont: [
-      "-apple-system",
-      "system-ui"
+      '-apple-system',
+      'system-ui'
     ]
-  },*/
+  },
   // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
   copyright:
     'Copyright © ' +
     new Date().getFullYear() +
     ' Poi contributors',
   organizationName: 'poi', // or set an env variable ORGANIZATION_NAME
-  projectName: 'dev.poi.io', // or set an env variable PROJECT_NAME
+  projectName: 'dev.poooi.app', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
     theme: 'tomorrow',
