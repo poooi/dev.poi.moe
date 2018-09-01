@@ -3,14 +3,12 @@
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
     "build": "docusaurus-build",
-    "publish-gh-pages": "docusaurus-publish",
+    "publish-gh-pages": "USE_SSH=true docusaurus-publish",
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
-    "rename-version": "docusaurus-rename-version",
-    "deploy": "gh-pages -d build/dev.poi.io"
+    "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "docusaurus": "^1.3.3",
-    "gh-pages": "^1.2.0"
+    "docusaurus": "^1.3.3"
   }
 }
