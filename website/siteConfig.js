@@ -13,10 +13,12 @@ const siteConfig = {
   baseUrl: '/' /* base url for your project */,
   projectName: 'dev.poi',
   headerLinks: [
+    { search: true },
     {doc: 'plugin-introduction', label: 'Docs'},
     {doc: 'cli', label: 'CLI'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
+    { href: 'https://opencollective.com/poi', label: 'Donate'}
   ],
   /* path to images for header/footer */
   headerIcon: 'img/poi.png',
@@ -55,6 +57,11 @@ const siteConfig = {
   repoUrl: 'https://github.com/poooi/dev.poi.io',
   /* On page navigation for the current documentation page */
   // onPageNav: 'separate',
+  algolia: {
+    apiKey: 'c702792395f27b7554df08c52438496c',
+    indexName: 'dev_poi',
+    algoliaOptions: {} // Optional, if provided by Algolia
+  },
 };
 
 module.exports = siteConfig;

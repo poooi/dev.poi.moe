@@ -83,6 +83,7 @@ class HomeSplash extends React.Component {
             <Button href={docUrl('plugin-introduction.html', language)}>Read the docs</Button>
             <Button href="https://poi.io">Main website</Button>
             <Button href="https://github.com/poooi/poi">GitHub Repo</Button>
+            <Button href="https://opencollective.com/poi">Donate</Button>
           </PromoSection>
         </div>
       </SplashContainer>
