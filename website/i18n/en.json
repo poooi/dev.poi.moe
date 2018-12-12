@@ -56,6 +56,58 @@
       "plugin-meta-field": {
         "title": "Meta field in package.json",
         "sidebar_label": "Meta field"
+      },
+      "version-9.0.x-api-events": {
+        "title": "Events",
+        "sidebar_label": "Events"
+      },
+      "version-9.0.x-api-introduction": {
+        "title": "API introduction",
+        "sidebar_label": "Introduction"
+      },
+      "version-9.0.x-api-poi-utils": {
+        "title": "Utilities in poi",
+        "sidebar_label": "Utilities"
+      },
+      "version-9.0.x-api-redux": {
+        "title": "Utilities with redux",
+        "sidebar_label": "Redux"
+      },
+      "version-9.0.x-cli": {
+        "title": "Command Line Options",
+        "sidebar_label": "CLI Options"
+      },
+      "version-9.0.x-guide-coding-style": {
+        "title": "Coding style guide",
+        "sidebar_label": "Coding style guide"
+      },
+      "version-9.0.x-guide-debugging": {
+        "title": "Debugging a plugin",
+        "sidebar_label": "Debugging"
+      },
+      "version-9.0.x-guide-publishing": {
+        "title": "Publishing a plugin",
+        "sidebar_label": "Publishing"
+      },
+      "version-9.0.x-guide-tips": {
+        "title": "Tips that might help",
+        "sidebar_label": "Tips"
+      },
+      "version-9.0.x-plugin-exports": {
+        "title": "Exported variables",
+        "sidebar_label": "Exports"
+      },
+      "version-9.0.x-plugin-introduction": {
+        "title": "Plugin introduction",
+        "sidebar_label": "Introduction"
+      },
+      "version-9.0.x-plugin-life-cycle": {
+        "title": "Life cycle",
+        "sidebar_label": "Life cycle"
+      },
+      "version-9.0.x-plugin-meta-field": {
+        "title": "Meta field in package.json",
+        "sidebar_label": "Meta field"
       }
     },
     "links": {
