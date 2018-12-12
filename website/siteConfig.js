@@ -26,8 +26,8 @@ const siteConfig = {
   favicon: 'img/poi.png',
   /* colors for website */
   colors: {
-    primaryColor: '#03a9f4',
-    secondaryColor: '#ff9800',
+    primaryColor: '#137CBD',
+    secondaryColor: '#0E5A8A',
   },
   /* custom fonts for website */
   fonts: {
@@ -49,7 +49,7 @@ const siteConfig = {
   projectName: 'dev.poooi.app', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
-    theme: 'dracula',
+    theme: 'vs2015',
     defaultLang: 'javascript',
   },
   scripts: ['https://buttons.github.io/buttons.js'],
