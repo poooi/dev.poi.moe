@@ -4,39 +4,73 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "Documents for poi development",
-    "api-events": "Events",
-    "Events": "Events",
-    "api-introduction": "API introduction",
-    "Introduction": "Introduction",
-    "api-poi-utils": "Utilities in poi",
-    "Utilities": "Utilities",
-    "api-redux": "Utilities with redux",
-    "Redux": "Redux",
-    "cli": "Command Line Options",
-    "CLI Options": "CLI Options",
-    "guide-coding-style": "Coding style guide",
-    "Coding style guide": "Coding style guide",
-    "guide-debugging": "Debugging a plugin",
-    "Debugging": "Debugging",
-    "guide-publishing": "Publishing a plugin",
-    "Publishing": "Publishing",
-    "guide-tips": "Tips that might help",
-    "Tips": "Tips",
-    "plugin-exports": "Exported variables",
-    "Exports": "Exports",
-    "plugin-introduction": "Plugin introduction",
-    "plugin-life-cycle": "Life cycle",
-    "Life cycle": "Life cycle",
-    "plugin-meta-field": "Meta field in package.json",
-    "Meta field": "Meta field",
-    "Docs": "Docs",
-    "CLI": "CLI",
-    "Help": "Help",
-    "Blog": "Blog",
-    "Donate": "Donate",
-    "Essentials": "Essentials",
-    "API": "API",
-    "Guides": "Guides"
+    "docs": {
+      "api-events": {
+        "title": "Events",
+        "sidebar_label": "Events"
+      },
+      "api-introduction": {
+        "title": "API introduction",
+        "sidebar_label": "Introduction"
+      },
+      "api-poi-utils": {
+        "title": "Utilities in poi",
+        "sidebar_label": "Utilities"
+      },
+      "api-redux": {
+        "title": "Utilities with redux",
+        "sidebar_label": "Redux"
+      },
+      "cli": {
+        "title": "Command Line Options",
+        "sidebar_label": "CLI Options"
+      },
+      "guide-coding-style": {
+        "title": "Coding style guide",
+        "sidebar_label": "Coding style guide"
+      },
+      "guide-debugging": {
+        "title": "Debugging a plugin",
+        "sidebar_label": "Debugging"
+      },
+      "guide-publishing": {
+        "title": "Publishing a plugin",
+        "sidebar_label": "Publishing"
+      },
+      "guide-tips": {
+        "title": "Tips that might help",
+        "sidebar_label": "Tips"
+      },
+      "plugin-exports": {
+        "title": "Exported variables",
+        "sidebar_label": "Exports"
+      },
+      "plugin-introduction": {
+        "title": "Plugin introduction",
+        "sidebar_label": "Introduction"
+      },
+      "plugin-life-cycle": {
+        "title": "Life cycle",
+        "sidebar_label": "Life cycle"
+      },
+      "plugin-meta-field": {
+        "title": "Meta field in package.json",
+        "sidebar_label": "Meta field"
+      }
+    },
+    "links": {
+      "Docs": "Docs",
+      "CLI": "CLI",
+      "Help": "Help",
+      "Blog": "Blog",
+      "Donate": "Donate"
+    },
+    "categories": {
+      "Essentials": "Essentials",
+      "API": "API",
+      "Guides": "Guides",
+      "CLI": "CLI"
+    }
   },
   "pages-strings": {
     "Help Translate|recruit community translators for your project": "Help Translate",
