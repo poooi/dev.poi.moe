@@ -27,17 +27,13 @@ To summerize, following topics are relevant in plugin development. and again, th
 - Redux as well as React-Redux
 - Electron.js
 
-## What is a plugin
+## Plugin
 
-A poi plugin is essentially a node module. Installing, removing or updating the plugin in fact correspond to npm manupluations under the same name, which are managed by poi itself.
+A poi plugin is essentially a piece of JavaScript code that interacts with poi. For better management and redistribution, it is wrapped in a [`Node.js module`](https://nodejs.org/api/modules.html#modules_modules), and finally form a [`npm package`](https://docs.npmjs.com/about-packages-and-modules). poi bundles its own `npm` executable for downloading, installing and removing plugins.
 
-A plugin should follow npm related specifications, a [`package.json`](https://docs.npmjs.com/files/package.json) under plugin root directory is necessary. The entry file is specified in `main` field, and, if not provided, will be `index.js`, or `index.es`.
+To make a plugin valid npm package, a [`package.json`](https://docs.npmjs.com/files/package.json) under plugin root directory is necessary. The entry file is specified in `main` field, nad if not provided, poi will try possible common entry file names, e.g. `index.js` or `index.es`.
 
-Plugin will interact with poi using:
-
-- information provided in `package.json`
-- code blocks exported from the module and imported by poi via `import` or `require` syntax
-- exported variables
+poi reads `package.json` file, then load plugin package to discover predefined variables. According to the information of the plugin, poi launches corresponding tasks to make plugin work.
 
 A typical folder structure of poi plugin could be:
 
@@ -58,3 +54,12 @@ poi-plugin-foo-bar
 └── views
     └── // your react components
 ```
+
+In brief, building a plugin is to:
+
+- write JavaScript code implementing your desired functionalities
+- prepare variables to export in entry file
+- form a valid npm package
+- publish the package so that it could be publicly accessed
+
+Since
