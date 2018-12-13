@@ -37,6 +37,10 @@
         "title": "Publishing a plugin",
         "sidebar_label": "Publishing"
       },
+      "guide-resources": {
+        "title": "Learning resources",
+        "sidebar_label": "Tips"
+      },
       "guide-tips": {
         "title": "Tips that might help",
         "sidebar_label": "Tips"
@@ -46,7 +50,7 @@
         "sidebar_label": "Exports"
       },
       "plugin-introduction": {
-        "title": "Plugin introduction",
+        "title": "Introduction to poi and plugins",
         "sidebar_label": "Introduction"
       },
       "plugin-life-cycle": {

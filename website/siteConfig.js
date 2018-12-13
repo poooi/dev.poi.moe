@@ -56,7 +56,7 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your template.
   repoUrl: 'https://github.com/poooi/dev.poi.io',
   /* On page navigation for the current documentation page */
-  // onPageNav: 'separate',
+  onPageNav: 'separate',
   algolia: {
     apiKey: 'c702792395f27b7554df08c52438496c',
     indexName: 'dev_poi',
