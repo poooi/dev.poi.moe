@@ -12,3 +12,7 @@ website/i18n/*
 
 build/
 *.log
+
+# Vitepress
+.vitepress/dist
+.vitepress/cache
