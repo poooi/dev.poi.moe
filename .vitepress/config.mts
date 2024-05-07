@@ -56,12 +56,10 @@ export default defineConfig({
       ],
     },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/poooi/poi' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/poooi/poi' }],
 
     footer: {
-      copyright: 'Copyright © 2015-present poi contributors'
+      copyright: 'Copyright © 2015-present poi contributors',
     },
 
     search: {
@@ -69,14 +67,16 @@ export default defineConfig({
       options: {
         appId: '0EV6KWV5HS',
         apiKey: '20485868c1bd7928daab466b6067883c',
-        indexName: 'crawler_dev.poi.moe'
-      }
+        indexName: 'crawler_dev.poi.moe',
+      },
     },
   },
 
   sitemap: {
-    hostname: 'https://dev.poi.moe'
+    hostname: 'https://dev.poi.moe',
   },
 
   lastUpdated: true,
+
+  cleanUrls: true,
 })
