@@ -71,6 +71,12 @@ export default defineConfig({
         apiKey: '20485868c1bd7928daab466b6067883c',
         indexName: 'dev_poi_vitepress'
       }
-    }
+    },
   },
+
+  sitemap: {
+    hostname: 'https://dev.poi.moe'
+  },
+
+  lastUpdated: true,
 })
