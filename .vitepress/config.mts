@@ -69,7 +69,7 @@ export default defineConfig({
       options: {
         appId: '0EV6KWV5HS',
         apiKey: '20485868c1bd7928daab466b6067883c',
-        indexName: 'dev_poi_vitepress'
+        indexName: 'crawler_dev.poi.moe'
       }
     },
   },
