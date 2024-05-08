@@ -63,12 +63,7 @@ export default defineConfig({
     },
 
     search: {
-      provider: 'algolia',
-      options: {
-        appId: '0EV6KWV5HS',
-        apiKey: '20485868c1bd7928daab466b6067883c',
-        indexName: 'crawler_dev.poi.moe',
-      },
+      provider: 'local',
     },
   },
 
